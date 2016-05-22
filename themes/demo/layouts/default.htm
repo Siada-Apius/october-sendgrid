@@ -1,4 +1,7 @@
 description = "Default layout"
+
+[session]
+security = "all"
 ==
 <!DOCTYPE html>
 <html>
@@ -39,6 +42,18 @@ description = "Default layout"
                             <li class="{% if this.page.id == 'ajax' %}active{% endif %}"><a href="{{ 'ajax'|page }}">AJAX framework</a></li>
                             <li class="{% if this.page.id == 'plugins' %}active{% endif %}"><a href="{{ 'plugins'|page }}">Plugin components</a></li>
                         </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Auth <span class="caret"></span></a>
+                              <ul class="dropdown-menu">
+                                {% if not user %}
+                                    <li><a href="{{ 'auth'|page }}">Login</a></li>
+                                {% else %}
+                                    <li><a href="#" data-request="onLogout">Logout</a></li>
+                                {% endif %}
+                              </ul>
+                            </li>
+                          </ul>
                     </div>
                 </div>
             </nav>
