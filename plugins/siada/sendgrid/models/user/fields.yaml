@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    name:
+        label: name
+        span: left
+
+    email:
+        label: email
+        span: left
+
+    created_at:
+        label: created at
+        span: left

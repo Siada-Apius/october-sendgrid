@@ -1,0 +1,4 @@
+1.0.1: First version of sendgrid
+1.0.2:
+  - Run table migrations
+  - create_users_table.php
