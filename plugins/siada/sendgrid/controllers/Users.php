@@ -58,22 +58,22 @@ class Users extends Controller
 
 
                 //GET DEALS
-                $deal = Deal::orderBy(DB::raw('RAND()'))->take(1)->get();
+                $deal = Deal::orderBy(DB::raw('RAND()'))->take(1);
 
-                if ($deal) {
+                if ($deal->exists()) {
                     $email
-                        ->addSubstitution(":deal_name", [$deal->first()->name])
-                        ->addSubstitution(":deal_desc", [$deal->first()->description])
-                        ->addSubstitution(":deal_address", [$deal->first()->address])
-                        ->addSubstitution(":deal_text", [$deal->first()->text])
+                        ->addSubstitution(":deal_name", [$deal->get()->first()->name])
+                        ->addSubstitution(":deal_desc", [$deal->get()->first()->description])
+                        ->addSubstitution(":deal_address", [$deal->get()->first()->address])
+                        ->addSubstitution(":deal_text", [$deal->get()->first()->text])
                     ;
                 } else {
 
                     $email
-                        ->addSubstitution(":deal_name", ['Default deal name'])
-                        ->addSubstitution(":deal_desc", ['Default deal description'])
-                        ->addSubstitution(":deal_address", ['Default deal address'])
-                        ->addSubstitution(":deal_text", ['Default deal text'])
+                        ->addSubstitution(":deal_name", ['No data found in DB']) //please use Deals plugin, Admin area.
+                        ->addSubstitution(":deal_desc", ['No data found in DB']) //please use Deals plugin, Admin area.
+                        ->addSubstitution(":deal_address", ['No data found in DB']) //please use Deals plugin, Admin area.
+                        ->addSubstitution(":deal_text", ['No data found in DB']) //please use Deals plugin, Admin area.
                     ;
                 }
 
