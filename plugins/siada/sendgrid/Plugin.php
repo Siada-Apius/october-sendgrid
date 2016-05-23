@@ -3,8 +3,10 @@
 use Event;
 use Backend;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use October\Rain\Auth\Models\User;
 use SendGrid;
+use Siada\Deals\Models\Deal;
 use System\Classes\PluginBase;
 
 /**
@@ -99,6 +101,27 @@ class Plugin extends PluginBase
                 ->addSubstitution(":user_email", [$user_email])
                 ->addSubstitution(":created_at", [$created_at])
             ;
+
+
+            //GET DEALS
+            $deal = Deal::orderBy(DB::raw('RAND()'))->take(1)->get();
+
+            if ($deal) {
+                $email
+                    ->addSubstitution(":deal_name", [$deal->first()->name])
+                    ->addSubstitution(":deal_desc", [$deal->first()->description])
+                    ->addSubstitution(":deal_address", [$deal->first()->address])
+                    ->addSubstitution(":deal_text", [$deal->first()->text])
+                ;
+            } else {
+
+                $email
+                    ->addSubstitution(":deal_name", ['Default deal name'])
+                    ->addSubstitution(":deal_desc", ['Default deal description'])
+                    ->addSubstitution(":deal_address", ['Default deal address'])
+                    ->addSubstitution(":deal_text", ['Default deal text'])
+                ;
+            }
 
             $sendgrid->send($email);
         });
