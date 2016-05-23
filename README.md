@@ -2,7 +2,9 @@
 
 * git clone
 * composer install
-* 
+* php artisan october:up
+
+### Additional info:
 * php artisan plugin:refresh rainlab.user
 * RainLab User plugin is updated!!! Added registration event! (RainLab\User\Components\Account.php, line 190. Add: Event::fire('rainlab.user.registration', [$user]);
 * php artisan plugin:refresh siada.sendgrid
