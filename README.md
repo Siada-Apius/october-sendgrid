@@ -1,3 +1,16 @@
+### From Siada
+
+* git clone
+* composer install
+* 
+* php artisan plugin:refresh rainlab.user
+* RainLab User plugin is updated!!! Added registration event! (RainLab\User\Components\Account.php, line 190. Add: Event::fire('rainlab.user.registration', [$user]);
+* php artisan plugin:refresh siada.sendgrid
+* php artisan plugin:refresh siada.deals
+
+
+
+
 <p align="center">
     <img src="https://github.com/octobercms/october/blob/master/themes/demo/assets/images/october.png?raw=true" alt="October" width="25%" height="25%" />
 </p>
